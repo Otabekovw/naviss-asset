@@ -155,3 +155,11 @@ CORS_ALLOW_ALL_HEADERS = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_HEADERS = ["*"]
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Library API',
+    'DESCRIPTION': 'API для персональной библиотеки',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+}
