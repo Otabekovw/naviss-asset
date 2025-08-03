@@ -1,6 +1,6 @@
 from rest_framework import generics
 from .models import Partner, FAQ, News, Feedback
-from .serializers import  PartnerSerializer, FAQSerializer, NewsSerializer, FeedbackSerializer
+from .serializers import PartnerSerializer, FAQSerializer, NewsSerializer, FeedbackSerializer
 
 class PartnerAPIView(generics.ListAPIView):
     queryset = Partner.objects.all()
