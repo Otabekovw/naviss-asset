@@ -1,4 +1,4 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from . import models
 from . import Serializers
 
@@ -41,3 +41,8 @@ class DetailednewsAPIView(generics.ListAPIView):
 class DetailednewsDetailAPIView(generics.RetrieveAPIView):
     queryset = models.Detailednews.objects.all()
     serializer_class = Serializers.DetailednewsSerializers
+
+
+
+
+

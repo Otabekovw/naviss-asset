@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import Partners, Applications, Review, Detailednews, Contacts, News
 
+
 class UserProfileSerializers(serializers.ModelSerializer):
     class Meta:
         model = Partners
@@ -30,3 +31,5 @@ class DetailednewsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Detailednews
         fields = '__all__'
+
+
