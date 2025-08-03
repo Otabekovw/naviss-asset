@@ -1,4 +1,5 @@
 from django.db import models
+from .serializers import PartnerSerializer , FAQSerializer, NewsSerializer, FeedbackSerializer
 
 
 class Partner(models.Model):
