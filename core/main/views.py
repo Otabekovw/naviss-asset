@@ -1,48 +1,37 @@
-from rest_framework import generics, viewsets
-from . import models
-from . import Serializers
+from rest_framework import generics
+from .models import Partner, FAQ, News, Feedback
+from .serializers import  PartnerSerializer, FAQSerializer, NewsSerializer, FeedbackSerializer
 
-class PartnersAPIView(generics.ListAPIView):
-    queryset = models.Partners.objects.all()
-    serializer_class = Serializers.UserProfileSerializers
+class PartnerAPIView(generics.ListAPIView):
+    queryset = Partner.objects.all()
+    serializer_class = PartnerSerializer
 
-class PartnersCreateAPIView(generics.CreateAPIView):
-    queryset = models.Partners.objects.all()
-    serializer_class = Serializers.UserProfileSerializers
+class PartnerDetail(generics.RetrieveAPIView):
+    queryset = Partner.objects.all()
+    serializer_class = PartnerSerializer
 
-class PartnersUpdateAPIView(generics.UpdateAPIView):
-    queryset = models.Partners.objects.all()
-    serializer_class = Serializers.UserProfileSerializers
 
-class PartnersDeleteAPIView(generics.DestroyAPIView):
-    queryset = models.Partners.objects.all()
-    serializer_class = Serializers.UserProfileSerializers
+class FAQAPIView(generics.ListAPIView):
+    queryset = FAQ.objects.all()
+    serializer_class = FAQSerializer
+
+class FAQDetail(generics.RetrieveAPIView):
+    queryset = FAQ.objects.all()
+    serializer_class = FAQSerializer
+
 
 class NewsAPIView(generics.ListAPIView):
-    queryset = models.News.objects.all()
-    serializer_class = Serializers.NewsSerializers
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
 
-class ContactAPIView(generics.ListAPIView):
-    queryset = models.Contacts.objects.all()
-    serializer_class = Serializers.ContactsSerializers
+class NewsDetail(generics.RetrieveAPIView):
+    queryset = News.objects.all()
+    serializer_class = NewsSerializer
 
-class ApplicationsAPIView(generics.ListAPIView):
-    queryset = models.Applications.objects.all()
-    serializer_class = Serializers.ApplicationsSerializers
+class FeedbackAPIView(generics.ListAPIView):
+    queryset = Feedback.objects.all()
+    serializer_class = FeedbackSerializer
 
-class ReviewAPIView(generics.ListAPIView):
-    queryset = models.Review.objects.all()
-    serializer_class = Serializers.ReviewSerializers
-
-class DetailednewsAPIView(generics.ListAPIView):
-    queryset = models.Detailednews.objects.all()
-    serializer_class = Serializers.DetailednewsSerializers
-
-class DetailednewsDetailAPIView(generics.RetrieveAPIView):
-    queryset = models.Detailednews.objects.all()
-    serializer_class = Serializers.DetailednewsSerializers
-
-
-
-
-
+class FeedbackDetail(generics.RetrieveAPIView):
+    queryset = Feedback.objects.all()
+    serializer_class = FeedbackSerializer

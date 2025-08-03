@@ -1,55 +1,53 @@
 from django.db import models
 
-class Partners(models.Model):
-    img = models.ImageField(verbose_name="Партнеры", upload_to="partners/")
+
+class Partner(models.Model):
+    name = models.CharField(max_length=100, verbose_name='Имя партнера')
+    image = models.ImageField(upload_to='images/partner/')
+
+    class Meta:
+        db_table = 'partner'
+        ordering = ['id']
 
     def __str__(self):
-        return str(self.img)
+        return self.name
+
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=500, verbose_name='Вопросы')
+    answer = models.TextField(max_length=500, verbose_name='Ответы')
+
+    def __str__(self):
+        return self.question
+
+    class Meta:
+        db_table = 'FAQ'
+        ordering = ['id']
 
 class News(models.Model):
-    title = models.CharField(verbose_name="Название", max_length=255)
-    img = models.ImageField(verbose_name="Изображение")
-    date = models.DateField(verbose_name="Дата")
-    hours = models.IntegerField(verbose_name="Часы")
+    title = models.CharField(max_length=250)
+    content = models.TextField(null=True, blank=True)
+    date = models.DateTimeField()
+    image = models.ImageField(upload_to='images/news/')
 
     def __str__(self):
         return self.title
 
-class Contacts(models.Model):
-    name = models.CharField(verbose_name="Имя", max_length=100)
-    surname = models.CharField(verbose_name="Фамилия", max_length=100)
-    country = models.CharField(verbose_name="Страна", max_length=100)
-    email = models.EmailField(verbose_name="E-mail")
-    phone = models.BigIntegerField(verbose_name="Номер телефона")
+    class Meta:
+        db_table = 'News'
+        ordering = ['id']
+
+
+class Feedback(models.Model):
+    user_name = models.CharField(max_length=250)
+    rate = models.IntegerField(default=0.0)
+    content = models.TextField()
+    date = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.name} {self.surname}"
+        return self.user_name
 
-class Applications(models.Model):
-    name = models.CharField(verbose_name="Имя", max_length=100)
-    surname = models.CharField(verbose_name="Фамилия", max_length=100)
-    country = models.CharField(verbose_name="Страна", max_length=100)
-    email = models.EmailField(verbose_name="E-mail")
-    phone = models.BigIntegerField(verbose_name="Номер телефона")
-
-    def __str__(self):
-        return f"{self.name} {self.surname}"
-
-class Review(models.Model):
-    name = models.CharField(verbose_name="Имя", max_length=100)
-    comment = models.TextField(verbose_name="Комменты")
-    rating = models.DecimalField(verbose_name="Звездочки", max_digits=2, decimal_places=1, default=5.0)
-
-    def __str__(self):
-        return f"{self.name} - {self.rating}"
-
-class Detailednews(models.Model):
-    title = models.CharField(verbose_name="Название", max_length=255)
-    img = models.ImageField(verbose_name="Изображение")
-    date = models.DateField(verbose_name="Дата")
-    hours = models.IntegerField(verbose_name="Часы")
-    text = models.TextField(verbose_name="Текст")
-
-    def __str__(self):
-        return self.title
+    class Meta:
+        db_table = 'Feedback'
+        ordering = ['id']
 
