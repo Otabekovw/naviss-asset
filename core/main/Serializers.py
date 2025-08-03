@@ -22,3 +22,7 @@ class FeedbackSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.Feedback
         fields = '__all__'
+
+
+
+
