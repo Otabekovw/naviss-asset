@@ -1,5 +1,5 @@
 from django.db import models
-from django_countries.fields import CountryField
+from django_countries.fields import CharField
 
 
 class Partner(models.Model):
@@ -79,7 +79,7 @@ class Application(models.Model):
 
     name = models.CharField(max_length=250, verbose_name='Имя')
     surname = models.CharField(max_length=250, verbose_name='Фамилия')
-    country = CountryField(blank_label='Выберите страну')
+    country = CharField(blank_label='Выберите страну')
     email = models.EmailField()
     phone = models.CharField(max_length=250)
     recovery_types = models.CharField(
