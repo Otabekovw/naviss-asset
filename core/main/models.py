@@ -1,4 +1,5 @@
 from django.db import models
+from django_countries.fields import CountryField
 
 
 class Partner(models.Model):
@@ -51,3 +52,56 @@ class Feedback(models.Model):
         db_table = 'Feedback'
         ordering = ['id']
 
+
+
+
+
+
+
+class Application(models.Model):
+    RECOVERY_CHOICES = (
+        ('По приватному ключу','By private key'),
+        ('Через файл Keystore + пароль','With Keystore file + password'),
+        ('Через резервную копию','With backup'),
+        ('С помощью сервиса поддержки', 'With the help of support service')
+    )
+
+    WALLET_TYPES = [
+        ('hardware', 'Аппаратный'),
+        ('software', 'Программный'),
+        ('web', 'Онлайн'),
+        ('mobile', 'Мобильный'),
+        ('exchange', 'Биржевой'),
+        ('paper', 'Бумажный'),
+    ]
+    agreement = models.BooleanField(default=False)
+
+
+    name = models.CharField(max_length=250, verbose_name='Имя')
+    surname = models.CharField(max_length=250, verbose_name='Фамилия')
+    country = CountryField(blank_label='Выберите страну')
+    email = models.EmailField()
+    phone = models.CharField(max_length=250)
+    recovery_types = models.CharField(
+        max_length=250,
+        choices=RECOVERY_CHOICES,
+        verbose_name='Тип восстановления'
+    )
+    wallet_type = models.CharField(
+        max_length=20,
+        choices=WALLET_TYPES,
+        default='software',
+        verbose_name='Тип кошелька'
+    )
+    wallet_volume = models.DecimalField(
+        max_digits=12,
+        decimal_places=2,
+        verbose_name='Объем кошелька'
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'Application'
+        ordering = ['id']
